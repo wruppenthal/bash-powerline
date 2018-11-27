@@ -24,7 +24,7 @@ __powerline() {
       esac
     fi
 
-    __git_info() { 
+    __git_info() {
         [[ $POWERLINE_GIT = 0 ]] && return # disabled
         hash git 2>/dev/null || return # git not found
         local git_eng="env LANG=C git"   # force git output in English to make our work easier
@@ -61,14 +61,14 @@ __powerline() {
 
     ps1() {
         # Check the exit code of the previous command and display different
-        # colors in the prompt accordingly. 
+        # colors in the prompt accordingly.
         if [ $? -eq 0 ]; then
             local symbol="$COLOR_SUCCESS $PS_SYMBOL $RESET"
         else
             local symbol="$COLOR_FAILURE $PS_SYMBOL $RESET"
         fi
 
-        local cwd="$COLOR_CWD\w$RESET"
+        local cwd="$COLOR_CWD\u@\h:\w$RESET"
         # Bash by default expands the content of PS1 unless promptvars is disabled.
         # We must use another layer of reference to prevent expanding any user
         # provided strings, which would cause security issues.
